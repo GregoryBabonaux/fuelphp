@@ -2,6 +2,10 @@ machine:
   php:
     version: 5.5.11
 
+dependencies:
+  override:
+    - composer install --prefer-source --no-interaction --no-dev
+    
 test:
   override:
     - phpunit phpunit.php
