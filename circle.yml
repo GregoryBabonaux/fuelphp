@@ -13,4 +13,4 @@ dependencies:
 
 test:
   override:
-    - phpunit phpunit.php
+    - phpunit --coverage-text
