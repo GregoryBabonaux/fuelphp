@@ -66,7 +66,7 @@
 
 
 	<target name="phpunit">
-	    <exec logoutput="true" dir="/var/lib/jenkins/test/components" command="phpunit" escape="false" />
+	    <exec logoutput="true" dir="/var/lib/jenkins/test/" command="phpunit" escape="false" />
 	</target>
 
 	<target name="phpcb">
