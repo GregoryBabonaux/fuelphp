@@ -8,12 +8,17 @@
     />
 
     <target name="clean" description="Vide les répertoires d'artefacts">
-	
+	    <delete dir="/var/lib/jenkins/test/build/api" />
+	    <delete dir="/var/lib/jenkins/test/build/code-browser" />
+	    <delete dir="/var/lib/jenkins/test/build/coverage" />
+	    <delete dir="/var/lib/jenkins/test/build/logs" />
+	    <delete dir="/var/lib/jenkins/test/build/pdepend" />
+
 	    <mkdir dir="/var/lib/jenkins/test/build/api" />
-	    <mkdir dir="${project.basedir}/build/code-browser" />
-	    <mkdir dir="${project.basedir}/build/coverage" />
-	    <mkdir dir="${project.basedir}/build/logs" />
-	    <mkdir dir="${project.basedir}/build/pdepend" />
+	    <mkdir dir="/var/lib/jenkins/test/build/code-browser" />
+	    <mkdir dir="/var/lib/jenkins/test/build/coverage" />
+	    <mkdir dir="/var/lib/jenkins/test/build/logs" />
+	    <mkdir dir="/var/lib/jenkins/test/build/pdepend" />
 	</target>
 
 	<target name="qa" description="Lance les outils d'analyse">
@@ -29,26 +34,26 @@
 
 	<target name="pdepend">
 	    <phpdepend file="${project.basedir}/${source}">
-	        <logger type="jdepend-xml" outfile="${project.basedir}/build/logs/jdepend.xml" />
-	        <logger type="jdepend-chart" outfile="${project.basedir}/build/pdepend/dependencies.svg" />
-	        <logger type="overview-pyramid" outfile="${project.basedir}/build/pdepend/overview-pyramid.svg" />
+	        <logger type="jdepend-xml" outfile="/var/lib/jenkins/test/build/logs/jdepend.xml" />
+	        <logger type="jdepend-chart" outfile="/var/lib/jenkins/test/build/pdepend/dependencies.svg" />
+	        <logger type="overview-pyramid" outfile="/var/lib/jenkins/test/build/pdepend/overview-pyramid.svg" />
 	    </phpdepend>
 	</target>
 
 	<target name="phpmd">
 	    <phpmd file="${project.basedir}/${source}">
-	        <formatter type="xml" outfile="${project.basedir}/build/phpmd.xml" />
+	        <formatter type="xml" outfile="/var/lib/jenkins/test/build/phpmd.xml" />
 	    </phpmd>
 	</target>
 
 	<target name="phpcpd">
 	    <phpcpd file="${project.basedir}/${source}">
-	        <formatter type="pmd" outfile="${project.basedir}/build/logs/pmd-cpd.xml"/>
+	        <formatter type="pmd" outfile="/var/lib/jenkins/test/build/logs/pmd-cpd.xml"/>
 	    </phpcpd>
 	</target>
 
 	<target name="phploc">
-	    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '${project.basedir}/build/logs/phploc.csv' '${project.basedir}/${source}'" escape="false" />
+	    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '/var/lib/jenkins/test/build/logs/phploc.csv' '${project.basedir}/${source}'" escape="false" />
 	</target>
 
 	<target name="phpcs">
@@ -56,13 +61,13 @@
 	        <fileset dir="${project.basedir}/${source}">
 	            <include name="**/*.php"/>
 	        </fileset>
-	        <formatter type="checkstyle" outfile="${project.basedir}/build/logs/checkstyle.xml"/>
+	        <formatter type="checkstyle" outfile="/var/lib/jenkins/test/build/logs/checkstyle.xml"/>
 	    </phpcodesniffer>
 	</target>
 
 	<target name="phpdoc">
 	    <phpdoc title="API Documentation"
-	            destdir="${project.basedir}/build/api"
+	            destdir="/var/lib/jenkins/test/build/api"
 	            sourcecode="false"
 	            output="HTML:Smarty:PHP">
 	        <fileset dir="${project.basedir}/${source}">
@@ -81,6 +86,6 @@
 	</target>
 
 	<target name="phpcb">
-	    <exec logoutput="true" command="phpcb --log '${project.basedir}/build/logs' --source '${project.basedir}/${source}' --output '${project.basedir}/build/code-browser'" escape="false" />
+	    <exec logoutput="true" command="phpcb --log '/var/lib/jenkins/test/build/logs' --source '${project.basedir}/${source}' --output '/var/lib/jenkins/test/build/code-browser'" escape="false" />
 	</target>
 </project>
