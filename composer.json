@@ -13,8 +13,7 @@
     ],
     "require": {
 		"php": ">=5.3",
-		"fuelphp/foundation": "dev-master",
-		"fuelphp/demo-component" : "dev-master"
+		"swiftmailer/swiftmailer": "5.3.*@dev"
     },
     "suggest" : {
     },
