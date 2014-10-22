@@ -12,8 +12,9 @@
 		}
     ],
     "require": {
-		"php": ">=5.3",
-		"swiftmailer/swiftmailer": "5.3.*@dev"
+		"php": ">=5.4",
+		"fuelphp/foundation": "dev-master",
+		"fuelphp/demo-component" : "dev-master"
     },
     "suggest" : {
     },
