@@ -9,7 +9,7 @@
 
     <target name="clean" description="Vide les répertoires d'artefacts">
 	
-	    <mkdir dir="${project.basedir}/build/api" />
+	    <mkdir dir="/var/lib/jenkins/test/build/api" />
 	    <mkdir dir="${project.basedir}/build/code-browser" />
 	    <mkdir dir="${project.basedir}/build/coverage" />
 	    <mkdir dir="${project.basedir}/build/logs" />
