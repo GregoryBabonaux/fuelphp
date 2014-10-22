@@ -27,7 +27,6 @@
 	    <phingcall target="phpcpd" />
 	    <phingcall target="phploc" />
 	    <phingcall target="phpcs" />
-	    <phingcall target="phpdoc" />
 	    <phingcall target="phpunit" />
 	    <phingcall target="phpcb" />
 	</target>
@@ -65,21 +64,6 @@
 	    </phpcodesniffer>
 	</target>
 
-	<target name="phpdoc">
-	    <phpdoc title="API Documentation"
-	            destdir="/var/lib/jenkins/test/build/api"
-	            sourcecode="false"
-	            output="HTML:Smarty:PHP">
-	        <fileset dir="/var/lib/jenkins/test/components">
-	            <include name="**/*.php"/>
-	        </fileset>
-	        <projdocfileset dir=".">
-	            <include name="README"/>
-	            <include name="INSTALL"/>
-	            <include name="CHANGELOG"/>
-	        </projdocfileset>
-	    </phpdoc>
-	</target>
 
 	<target name="phpunit">
 	    <exec logoutput="true" dir="/var/lib/jenkins/test/components" command="phpunit" escape="false" />
