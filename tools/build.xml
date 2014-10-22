@@ -33,7 +33,7 @@
 	</target>
 
 	<target name="pdepend">
-	    <phpdepend file="${project.basedir}/${source}">
+	    <phpdepend file="/var/lib/jenkins/test/components/">
 	        <logger type="jdepend-xml" outfile="/var/lib/jenkins/test/build/logs/jdepend.xml" />
 	        <logger type="jdepend-chart" outfile="/var/lib/jenkins/test/build/pdepend/dependencies.svg" />
 	        <logger type="overview-pyramid" outfile="/var/lib/jenkins/test/build/pdepend/overview-pyramid.svg" />
@@ -41,24 +41,24 @@
 	</target>
 
 	<target name="phpmd">
-	    <phpmd file="${project.basedir}/${source}">
+	    <phpmd file="/var/lib/jenkins/test/components">
 	        <formatter type="xml" outfile="/var/lib/jenkins/test/build/phpmd.xml" />
 	    </phpmd>
 	</target>
 
 	<target name="phpcpd">
-	    <phpcpd file="${project.basedir}/${source}">
+	    <phpcpd file="/var/lib/jenkins/test/components">
 	        <formatter type="pmd" outfile="/var/lib/jenkins/test/build/logs/pmd-cpd.xml"/>
 	    </phpcpd>
 	</target>
 
 	<target name="phploc">
-	    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '/var/lib/jenkins/test/build/logs/phploc.csv' '${project.basedir}/${source}'" escape="false" />
+	    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '/var/lib/jenkins/test/build/logs/phploc.csv' '/var/lib/jenkins/test/components'" escape="false" />
 	</target>
 
 	<target name="phpcs">
 	    <phpcodesniffer standard="Zend">
-	        <fileset dir="${project.basedir}/${source}">
+	        <fileset dir="/var/lib/jenkins/test/components">
 	            <include name="**/*.php"/>
 	        </fileset>
 	        <formatter type="checkstyle" outfile="/var/lib/jenkins/test/build/logs/checkstyle.xml"/>
@@ -70,7 +70,7 @@
 	            destdir="/var/lib/jenkins/test/build/api"
 	            sourcecode="false"
 	            output="HTML:Smarty:PHP">
-	        <fileset dir="${project.basedir}/${source}">
+	        <fileset dir="/var/lib/jenkins/test/components">
 	            <include name="**/*.php"/>
 	        </fileset>
 	        <projdocfileset dir=".">
@@ -82,10 +82,10 @@
 	</target>
 
 	<target name="phpunit">
-	    <exec logoutput="true" dir="${project.basedir}/${source}" command="phpunit" escape="false" />
+	    <exec logoutput="true" dir="/var/lib/jenkins/test/components" command="phpunit" escape="false" />
 	</target>
 
 	<target name="phpcb">
-	    <exec logoutput="true" command="phpcb --log '/var/lib/jenkins/test/build/logs' --source '${project.basedir}/${source}' --output '/var/lib/jenkins/test/build/code-browser'" escape="false" />
+	    <exec logoutput="true" command="phpcb --log '/var/lib/jenkins/test/build/logs' --source '/var/lib/jenkins/test/components' --output '/var/lib/jenkins/test/build/code-browser'" escape="false" />
 	</target>
 </project>
